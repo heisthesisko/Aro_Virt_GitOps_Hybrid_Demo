@@ -88,10 +88,10 @@ flowchart LR
 ```mermaid
 sequenceDiagram
   participant You
-  participant oc as oc/kubectl
-  participant az as az (Arc)
-  participant flux as Flux
-  participant kvirt as KubeVirt
+  participant oc as "oc / kubectl"
+  participant az as "az (Arc)"
+  participant flux as "Flux"
+  participant kvirt as "KubeVirt"
 
   You->>az: az connectedk8s connect (OpenShift to Arc)
   az-->>You: Cluster onboarded to Arc
@@ -99,12 +99,12 @@ sequenceDiagram
   az-->>flux: Flux controllers installed
   You->>flux: Configure Git source and Kustomization
   flux-->>oc: Apply Podinfo manifests
-  oc-->>You: Deployment/Service ready
+  oc-->>You: Deployment and Service ready
 
   You->>oc: oc apply -f virtualmachine.yaml
   oc-->>kvirt: Create VM (Fedora containerDisk + cloud-init)
-  kvirt-->>oc: VM running; Service reachable
-  oc-->>You: curl to service returns 200 OK (nginx)
+  kvirt-->>oc: VM running and service reachable
+  oc-->>You: curl to service returns 200 OK
 ```
 
 ---
