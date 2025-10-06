@@ -53,26 +53,32 @@ This session shows how OpenShift on Azure (ARO) can run open-source-native workf
 
 ```mermaid
 flowchart LR
-  subgraph Dev["Developer Workflow (OSS)"]
-    GIT[Public Git Repo (manifests/helm)] --> FLUX[Flux GitOps Reconciler]
+  %% Subgraphs
+  subgraph DEV["Developer Workflow - OSS"]
+    GIT[Public Git Repo: manifests and helm]
+    FLUX[Flux GitOps Reconciler]
   end
 
-  subgraph CL["ARO / OpenShift Cluster (Kubernetes)"]
+  subgraph CLUSTER["ARO / OpenShift Cluster (Kubernetes)"]
+    API[Cluster API Server]
     NS1[(Namespace: gitops-demo)]
-    APP[Podinfo Deployment+Service]
+    APP[Podinfo Deployment & Service]
     NS2[(Namespace: virt-demo)]
-    VM[VirtualMachine (KubeVirt / OpenShift Virtualization)]
+    VM[KubeVirt / OpenShift Virtualization VM]
   end
 
-  subgraph Arc["Azure Arc (Overlay Plane)"]
+  subgraph ARC["Azure Arc (Overlay Plane)"]
     CNX[connectedk8s agent]
-    EXT[Flux Extension]
+    EXT[Flux extension]
   end
 
-  GIT -->|polls| FLUX -->|applies| NS1 --> APP
-  CNX --- CL
-  EXT --> FLUX
+  %% Edges
+  GIT -->|polls| FLUX
+  FLUX -->|applies| NS1
+  NS1 --> APP
   NS2 --> VM
+  CNX --- API
+  EXT --> FLUX
 ```
 
 ---
