@@ -93,18 +93,18 @@ sequenceDiagram
   participant flux as Flux
   participant kvirt as KubeVirt
 
-  You->>az: az connectedk8s connect (OpenShift → Arc)
+  You->>az: az connectedk8s connect (OpenShift to Arc)
   az-->>You: Cluster onboarded to Arc
   You->>az: az k8s-extension create (Flux)
   az-->>flux: Flux controllers installed
-  You->>flux: Configure Git source + Kustomization
+  You->>flux: Configure Git source and Kustomization
   flux-->>oc: Apply Podinfo manifests
   oc-->>You: Deployment/Service ready
 
   You->>oc: oc apply -f virtualmachine.yaml
   oc-->>kvirt: Create VM (Fedora containerDisk + cloud-init)
-  kvirt-->>oc: VM Running; Service reachable
-  oc-->>You: curl service → 200 OK (nginx)
+  kvirt-->>oc: VM running; Service reachable
+  oc-->>You: curl to service returns 200 OK (nginx)
 ```
 
 ---
