@@ -150,15 +150,16 @@ spec:
           requests:
             memory: 2Gi
         devices:
+          interfaces:
+            - name: default
+              masquerade: {}
           disks:
             - name: containerdisk
-              disk:
-                bus: virtio
+              disk: { bus: virtio }
             - name: cloudinitdisk
-              disk:
-                bus: virtio
+              disk: { bus: virtio }
       networks:
-        - name: podnet
+        - name: default
           pod: {}
       volumes:
         - name: containerdisk
@@ -175,6 +176,7 @@ spec:
               runcmd:
                 - [ sh, -c, "systemctl enable --now nginx" ]
                 - [ sh, -c, "echo 'hello from kubevirt on openshift' > /usr/share/nginx/html/index.html" ]
+
 EOF
 
 # Optional service (ClusterIP) to reach nginx from within the cluster
