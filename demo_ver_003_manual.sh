@@ -10,8 +10,8 @@ fi
 
 SUFFIX="$1"
 RESOURCE_GROUP="aro-demo-rg"
-LOCATION="eastus"
-ARC_CLUSTER_NAME="aro-open-demo-$SUFFIX"
+LOCATION="centralus"
+ARC_CLUSTER_NAME="aro-open-demo"
 NS_GITOPS="gitops-demo-$SUFFIX"
 NS_VIRT="virt-demo-$SUFFIX"
 GIT_REPO_URL="https://github.com/stefanprodan/podinfo"
