@@ -39,6 +39,9 @@ oc project >/dev/null
 # ------------------------------
 # Azure resource group (idempotent)
 # ------------------------------
+
+az config set extension.use_dynamic_install=yes_without_prompt
+
 echo "🧱 Ensuring resource group: $RESOURCE_GROUP in $LOCATION"
 az group create -n "$RESOURCE_GROUP" -l "$LOCATION" >/dev/null
 
