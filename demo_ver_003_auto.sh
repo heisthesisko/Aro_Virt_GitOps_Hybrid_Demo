@@ -4,9 +4,9 @@ set -euo pipefail
 # Each run creates a unique timestamp suffix.
 
 SUFFIX=$(date +%Y%m%d-%H%M)
-RESOURCE_GROUP="aro-demo-rg"
+RESOURCE_GROUP="ATO2025DEMOCENTRAL"
 LOCATION="centralus"
-ARC_CLUSTER_NAME="aro-open-demo"
+ARC_CLUSTER_NAME="ato-central-aro-virt"
 NS_GITOPS="gitops-demo-$SUFFIX"
 NS_VIRT="virt-demo-$SUFFIX"
 GIT_REPO_URL="https://github.com/stefanprodan/podinfo"
