@@ -1,6 +1,6 @@
 # Set these to your cluster
-RG="ATO2025DEMOCENTRAL"
-CLUSTER="ato-central-aro-virt"
+RG="YourRGName"
+CLUSTER="YourClusterName"
 
 # Get API URL and kubeadmin password from Azure
 API_URL=$(az aro show -g "$RG" -n "$CLUSTER" --query apiserverProfile.url -o tsv)
